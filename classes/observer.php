@@ -44,14 +44,12 @@ class observer {
      */
     public static function course_deleted(\core\event\course_deleted $event): void {
         global $DB;
-        $DB->execute('UPDATE {customfield_data}
-                         SET contextid = :systemid
-                       WHERE contextid = :contextid AND fieldid IN (
-                             SELECT f.id
-                               FROM {customfield_field} f
-                               JOIN {customfield_category} c ON c.id = f.categoryid
-                              WHERE c.component = :component AND c.area = :area)', [
-            'systemid' => \context_system::instance()->id,
+        $select = 'contextid = :contextid AND fieldid IN (
+                       SELECT f.id
+                         FROM {customfield_field} f
+                         JOIN {customfield_category} c ON c.id = f.categoryid
+                        WHERE c.component = :component AND c.area = :area)';
+        $DB->set_field_select('customfield_data', 'contextid', \context_system::instance()->id, $select, [
             'contextid' => $event->contextid,
             'component' => 'tool_badgecustomfields',
             'area' => 'badge',

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 - 2026-11-19
+
+### Changed
+- The course deletion observer moves the values of the course badges to the system context with `$DB->set_field_select()` instead of `$DB->execute()`, as asked in the Moodle Plugins directory review (MMR-557). The behaviour is unchanged.
+
 ## 1.0.0 - 2026-11-02
 
 First release, built on `local_fieldssuite` 1.1.0.
