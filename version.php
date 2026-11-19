@@ -25,9 +25,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_badgecustomfields';
-$plugin->version = 2026110200;
+$plugin->version = 2026111900;
 $plugin->requires = 2024100700;
 $plugin->supported = [405, 503];
-$plugin->release = '1.0.0';
+$plugin->release = '1.0.1';
 $plugin->maturity = MATURITY_BETA;
 $plugin->dependencies = ['local_fieldssuite' => 2026110100];
